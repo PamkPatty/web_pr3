@@ -11,7 +11,7 @@ app.get('/api/articles', function (req, res) {
         } else {
             res.statusCode = 500;
             log.error('Internal error(%d): %s',
-                res.statusCode, err.message);
+            res.statusCode, err.message);
             return res.send({ error: 'Server error' });
         }
     });
@@ -25,7 +25,7 @@ app.post('/api/articles', function (req, res) {
         images: req.body.images
     });
 
-article.save(function (err) {
+    article.save(function (err) {
     if (!err) {
         log.info("article created");
         return res.send({
@@ -89,6 +89,7 @@ app.put('/api/articles/:id', function (req, res) {
         });
     });
 });
+
 app.delete('/api/articles/:id', function (req, res) {
     return ArticleModel.findById(req.params.id, function (err, article) {
         if (!article) {
